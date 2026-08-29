@@ -2,7 +2,37 @@
   command = "npm ci && npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "22"
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false
+
+# SPA: michi-router maneja el routing en el cliente.
+# Netlify sirve archivos existentes primero y aplica este redirect al resto.
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Cache para assets estáticos con hash (debe ir antes de /* para tener prioridad)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Headers de seguridad + no-cache para HTML
+# max-age=0, must-revalidate obliga al navegador a revalidar siempre con el servidor.
+# Después de un deploy, Netlify responde con el HTML nuevo en vez de servir el cacheado.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Cache-Control = "public, max-age=0, must-revalidate"

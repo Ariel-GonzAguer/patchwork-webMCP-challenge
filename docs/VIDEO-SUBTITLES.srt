@@ -1,0 +1,131 @@
+1
+00:00:00,000 --> 00:00:05,000
+Most AI agents browse the web by clicking and typing —
+
+2
+00:00:05,000 --> 00:00:09,000
+guessing their way through interfaces built for humans.
+
+3
+00:00:09,000 --> 00:00:13,000
+Slow, fragile, and hard to trust.
+
+4
+00:00:13,000 --> 00:00:18,000
+WebMCP changes that: websites can now expose
+structured tools an agent calls directly.
+
+5
+00:00:18,000 --> 00:00:22,000
+This is PatchWork — a shared urban garden
+where you and your agent plant together.
+
+6
+00:00:22,000 --> 00:00:27,000
+Here's the garden. Two beds, a 4-by-6 grid each.
+
+7
+00:00:27,000 --> 00:00:33,000
+I plant tomatoes and basil — the rules engine
+tells me they're good companions.
+
+8
+00:00:33,000 --> 00:00:39,000
+But if I put potatoes next to tomatoes,
+it warns me they're poor companions.
+
+9
+00:00:39,000 --> 00:00:45,000
+The same engine powers the diagnosis page:
+yellow leaves plus brown spots
+
+10
+00:00:45,000 --> 00:00:50,000
+on a tomato gives Early Blight, with concrete actions.
+
+11
+00:00:50,000 --> 00:00:56,000
+Now the interesting part. I open PatchWork
+in Chrome with WebMCP enabled.
+
+12
+00:00:56,000 --> 00:01:01,000
+It discovers six tools — here they are.
+
+13
+00:01:01,000 --> 00:01:05,000
+Let me ask it to design a bed for me.
+
+14
+00:01:05,000 --> 00:01:14,000
+Watch: the agent calls design_bed,
+the rules engine validates every placement,
+
+15
+00:01:14,000 --> 00:01:21,000
+and the canvas updates live — I can see exactly
+what it did in the activity log.
+
+16
+00:01:21,000 --> 00:01:25,000
+Now let's push it.
+
+17
+00:01:25,000 --> 00:01:32,000
+The agent gets back a structured warning —
+poor companions —
+
+18
+00:01:32,000 --> 00:01:36,000
+and explains it instead of silently breaking the garden.
+
+19
+00:01:36,000 --> 00:01:44,000
+It calls diagnose_issue and returns Early Blight
+with actions,
+
+20
+00:01:44,000 --> 00:01:49,000
+using the same engine I use in the UI.
+
+21
+00:01:49,000 --> 00:01:55,000
+Why does WebMCP matter here? Because we share
+the same state — same store, same canvas.
+
+22
+00:01:55,000 --> 00:02:00,000
+The agent doesn't simulate my garden;
+it works on the real one.
+
+23
+00:02:00,000 --> 00:02:06,000
+Every action is validated and logged,
+so trust is visible.
+
+24
+00:02:06,000 --> 00:02:15,000
+And planning becomes a negotiation: ask for
+a spring plan with four hours of sun,
+
+25
+00:02:15,000 --> 00:02:20,000
+and it proposes crops that actually fit, with reasons.
+
+26
+00:02:20,000 --> 00:02:28,000
+PatchWork is open source — the Learn page
+documents all six tools,
+
+27
+00:02:28,000 --> 00:02:33,000
+and the repo is linked below.
+
+28
+00:02:33,000 --> 00:02:38,000
+Open it in Chrome or ChatGPT
+and grow something together.
+
+29
+00:02:38,000 --> 00:02:42,000
+Thanks for watching!

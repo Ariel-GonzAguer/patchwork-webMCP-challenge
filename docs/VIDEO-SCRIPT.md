@@ -1,43 +1,44 @@
 # PatchWork — Video Script (<3 min)
 
 **Formato:** YouTube, público, con audio. <3 minutos.
-**Grabar con:** OBS Studio o Xbox Game Bar (Win+G) grabando Chrome/ChatGPT desktop.
-**Audio:** narrar este guion en inglés mientras se graba.
+**Idioma:** audio en **español** + subtítulos en **inglés** (requisito del concurso: traducción al inglés).
+**Grabar con:** OBS Studio o Xbox Game Bar (Win+G) grabando Chrome con la extensión Model Context Tool Inspector.
+**Subtítulos:** cargar `docs/VIDEO-SUBTITLES.srt` en YouTube Studio (ajustar tiempos si hace falta).
 
 ## Estructura (tiempos objetivo)
 
-| Tramo | Tiempo | Contenido |
-|---|---|---|
-| Hook | 0:00–0:15 | El problema: los agentes "hacen click" a ciegas |
-| Demo UI | 0:15–0:45 | PatchWork como humano: plantar, ver warnings, diagnóstico |
-| Demo agente | 0:45–1:50 | ChatGPT in-app browser: los 3 prompts estrella |
-| Por qué WebMCP | 1:50–2:30 | Estado compartido, tools validados, log de confianza |
-| Cierre | 2:30–2:50 | Learn page, repo, llamado a probarlo |
+| Tramo          | Tiempo    | Contenido                                                 |
+| -------------- | --------- | --------------------------------------------------------- |
+| Hook           | 0:00–0:15 | El problema: los agentes "hacen click" a ciegas           |
+| Demo UI        | 0:15–0:45 | PatchWork como humano: plantar, ver warnings, diagnóstico |
+| Demo agente    | 0:45–1:50 | Chrome + inspector WebMCP: los 3 prompts estrella         |
+| Por qué WebMCP | 1:50–2:30 | Estado compartido, tools validados, log de confianza      |
+| Cierre         | 2:30–2:50 | Learn page, repo, llamado a probarlo                      |
 
-## Guion narrado (inglés)
+## Guion narrado (español)
 
 **Hook:**
-"Most AI agents browse the web by clicking and typing — guessing their way through interfaces built for humans. That's slow, fragile, and hard to trust. WebMCP changes that: websites can now expose structured tools an agent can call directly. This is PatchWork — a shared urban garden where you and your agent plant together."
+"La mayoría de los agentes de IA navegan la web haciendo click y escribiendo — adivinando su camino por interfaces hechas para humanos. Es lento, frágil y difícil de confiar. WebMCP cambia eso: los sitios web ahora pueden exponer herramientas estructuradas que un agente llama directamente. Esto es PatchWork — un huerto urbano compartido donde vos y tu agente plantan juntos."
 
 **Demo como humano:**
-"Here's the garden. Two beds, a 4-by-6 grid each. I plant tomatoes and basil — the rules engine tells me they're good companions. But if I put potatoes next to tomatoes, it warns me they're poor companions. Same engine powers the diagnosis page: yellow leaves plus brown spots on a tomato gives Early Blight, with concrete actions."
+"Este es el huerto. Dos camas, cada una con una grilla de 4 por 6. Planto tomates y albahaca — el motor de reglas me dice que son buenos compañeros. Pero si pongo papas junto a los tomates, me advierte que son malos compañeros. El mismo motor alimenta la página de diagnóstico: hojas amarillas más manchas marrones en un tomate da mildiu temprano, con acciones concretas."
 
-**Demo con agente (ChatGPT in-app browser):**
-"Now the interesting part. I open PatchWork inside ChatGPT's browser. It discovers six tools — here they are. Let me ask it to design a bed for me."
-*[Typed prompt: "Plant tomatoes, basil and carrots in bed 1, spaced out nicely."]*
-"Watch: the agent calls `design_bed`, the rules engine validates every placement, and the canvas updates live — I can see exactly what it did in the activity log. Now let's push it:"
-*[Typed prompt: "Add potatoes next to my tomatoes."]*
-"The agent gets back a structured warning — poor companions — and can explain that to me instead of silently breaking the garden."
-*[Typed prompt: "My tomato leaves are yellow with brown spots. Diagnose it."]*
-"It calls `diagnose_issue` and returns Early Blight with actions, using the same engine I use in the UI."
+**Demo con agente (Chrome + inspector):**
+"Ahora la parte interesante. Abro PatchWork en Chrome con WebMCP habilitado. Detecta seis herramientas — acá están. Le pido que diseñe una cama para mí."
+*[Prompt tipeado: "Plant tomatoes, basil and carrots in bed 1, spaced out nicely."]*
+"Miren: el agente llama a `design_bed`, el motor de reglas valida cada colocación, y el canvas se actualiza en vivo — puedo ver exactamente qué hizo en el registro de actividad. Ahora vamos a presionarlo:"
+*[Prompt tipeado: "Add potatoes next to my tomatoes."]*
+"El agente recibe una advertencia estructurada — malos compañeros — y puede explicármelo en vez de romper el huerto en silencio."
+*[Prompt tipeado: "My tomato leaves are yellow with brown spots. Diagnose it."]*
+"Llama a `diagnose_issue` y devuelve mildiu temprano con acciones, usando el mismo motor que uso yo en la interfaz."
 
 **Por qué WebMCP:**
-"Why does WebMCP matter here? Because we share the same state — same store, same canvas. The agent doesn't simulate my garden; it works on the real one. Every action is validated and logged, so trust is visible. And planning becomes a negotiation: ask for a spring plan with four hours of sun, and it proposes crops that actually fit, with reasons."
+"¿Por qué importa WebMCP acá? Porque compartimos el mismo estado — el mismo store, el mismo canvas. El agente no simula mi huerto; trabaja sobre el real. Cada acción se valida y se registra, así la confianza es visible. Y planificar se vuelve una negociación: pedile un plan de primavera con cuatro horas de sol y te propone cultivos que realmente encajan, con razones."
 
 **Cierre:**
-"PatchWork is open source — the Learn page documents all six tools, and the repo is linked below. Open it in ChatGPT and grow something together. Thanks for watching!"
+"PatchWork es open source — la página Learn documenta las seis herramientas y el repo está en la descripción. Abrilo en Chrome o ChatGPT y cultivá algo juntos. ¡Gracias por mirar!"
 
-## Prompts exactos para el video (copiar y pegar)
+## Prompts exactos para el video (se tipean en inglés, copiar y pegar)
 
 1. `Plant tomatoes, basil and carrots in bed 1, spaced out nicely.`
 2. `Add potatoes next to my tomatoes.`
@@ -46,9 +47,10 @@
 
 ## Checklist de grabación
 
-- [ ] Reset del huerto antes de grabar (botón o limpiar localStorage)
-- [ ] ChatGPT desktop con GPT-5.6 Sol/Terra (site tools activos)
-- [ ] Mostrar el panel "Available site tools" del browser de ChatGPT
+- [ ] Reset del huerto antes de grabar (limpiar localStorage o recargar sin datos previos)
+- [ ] Chrome 149+ con `chrome://flags/#enable-webmcp-testing` activado
+- [ ] Extensión Model Context Tool Inspector instalada y mostrando los 6 tools
 - [ ] Mostrar el activity log actualizándose en vivo
-- [ ] Audio claro, sin música con copyright
+- [ ] Audio claro en español, sin música con copyright
+- [ ] Subir a YouTube y cargar `docs/VIDEO-SUBTITLES.srt` como subtítulos en inglés
 - [ ] Editar a <3 min; probar el resultado en YouTube público

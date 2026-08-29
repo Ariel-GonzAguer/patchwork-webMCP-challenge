@@ -1,0 +1,167 @@
+.intro-diagnostico {
+  max-width: 70ch;
+  color: var(--texto-suave);
+  margin: 0 0 1.25rem;
+}
+
+.diagnostico-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .diagnostico-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-controles {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.etiqueta-control {
+  font-weight: 600;
+}
+
+.panel-controles select {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.grupo-sintomas {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.grupo-sintomas legend {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.chips-sintomas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--acento);
+}
+
+.chip.activo {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #ffffff;
+}
+
+.resultados {
+  min-height: 8rem;
+}
+
+.sin-resultados {
+  color: var(--texto-suave);
+}
+
+.lista-diagnosticos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.diagnostico h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.cabecera-diagnostico {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.severidad {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
+
+.severidad-baja {
+  background: var(--acento-suave);
+  color: var(--acento-fuerte);
+}
+
+.severidad-media {
+  background: var(--advertencia-fondo);
+  color: var(--advertencia);
+}
+
+.severidad-alta {
+  background: var(--peligro-fondo);
+  color: var(--peligro);
+}
+
+.confianza {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-left: auto;
+}
+
+.sintomas-coincidentes {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  margin: 0.3rem 0 0.6rem;
+}
+
+.lista-acciones {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.sugerencia-agente {
+  position: sticky;
+  top: 1rem;
+}
+
+.sugerencia-agente h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.sugerencia-agente ul {
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.nota-agente {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  margin-top: 0.9rem;
+}

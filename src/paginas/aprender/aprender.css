@@ -1,0 +1,62 @@
+.intro-aprender {
+  max-width: 70ch;
+}
+
+.estado-webmcp {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radio);
+  border: 1px solid var(--borde);
+  background: var(--fondo);
+  font-size: 0.9rem;
+}
+
+.estado-webmcp.activo {
+  border-color: var(--acento);
+  background: var(--acento-suave);
+}
+
+.rejilla-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tool h3 {
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge-tipo {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
+
+.badge-tipo.read {
+  background: var(--acento-suave);
+  color: var(--acento-fuerte);
+}
+
+.badge-tipo.write {
+  background: var(--advertencia-fondo);
+  color: var(--advertencia);
+}
+
+.ejemplo-tool {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  margin: 0.5rem 0 0;
+}
+
+.lista-porque {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 70ch;
+}

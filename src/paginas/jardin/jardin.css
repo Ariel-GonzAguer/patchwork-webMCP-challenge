@@ -1,0 +1,177 @@
+.jardin-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .jardin-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.config-jardin {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.config-jardin input,
+.config-jardin select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.selector-cultivo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.selector-cultivo select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+.pista-selector {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.aviso {
+  background: var(--advertencia-fondo);
+  color: var(--advertencia);
+  border: 1px solid var(--advertencia);
+  border-radius: var(--radio);
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.camas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.titulo-cama {
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.grid {
+  display: inline-block;
+}
+
+.fila-grid {
+  display: flex;
+}
+
+.celda {
+  width: 52px;
+  height: 52px;
+  margin: 2px;
+  border-radius: 8px;
+  border: 1px dashed var(--borde);
+  background: var(--fondo);
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease;
+}
+
+.celda:hover {
+  transform: scale(1.05);
+  border-style: solid;
+  border-color: var(--acento);
+}
+
+.celda.ocupada {
+  border-style: solid;
+  border-color: var(--tierra);
+  background: var(--acento-suave);
+}
+
+.detalle-cultivo {
+  margin-top: 1.5rem;
+}
+
+.detalle-cultivo h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+
+.lista-datos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.registro-actividad {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.registro-actividad h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.lista-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.entrada-log {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: var(--fondo);
+  border-left: 3px solid var(--borde);
+}
+
+.entrada-log.agente {
+  border-left-color: var(--acento);
+}
+
+.entrada-log.humano {
+  border-left-color: var(--tierra);
+}
+
+.entrada-log .etiqueta-actor {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.entrada-log .hora {
+  color: var(--texto-suave);
+  font-size: 0.72rem;
+  margin-left: 0.4rem;
+}
+
+.log-vacio {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}

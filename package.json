@@ -1,0 +1,35 @@
+{
+  "name": "patchwork",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "PatchWork — shared urban garden where you and your AI agent plan, plant and care together (WebMCP)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && tsc -p tsconfig.node.json && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "deploy:netlify": "pnpm audit && pnpm test && bash scripts/deploy-netlify.sh"
+  },
+  "dependencies": {
+    "@arielgonzaguer/michi-router": "^3.3.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "14.6.6",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.1",
+    "jsdom": "^30.0.1",
+    "typescript": "~6.0.3",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  }
+}

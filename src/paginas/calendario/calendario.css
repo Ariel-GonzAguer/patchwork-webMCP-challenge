@@ -1,0 +1,54 @@
+.subtitulo-calendario {
+  color: var(--texto-suave);
+  margin: 0 0 1rem;
+}
+
+.lista-tareas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tarea {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.tarea.hecha {
+  opacity: 0.6;
+}
+
+.etiqueta-tarea {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
+
+.etiqueta-tarea input[type='checkbox'] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--acento);
+}
+
+.icono-tarea {
+  font-size: 1.2rem;
+}
+
+.texto-tarea {
+  flex: 1;
+}
+
+.tarea.hecha .texto-tarea {
+  text-decoration: line-through;
+}
+
+.dia-tarea {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}

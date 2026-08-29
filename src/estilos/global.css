@@ -1,0 +1,144 @@
+/* Estilos globales — PatchWork */
+
+:root {
+  --fondo: #f4f1e8;
+  --superficie: #ffffff;
+  --borde: #d8d3c3;
+  --texto: #23301f;
+  --texto-suave: #5a6450;
+  --acento: #2e7d32;
+  --acento-fuerte: #1b5e20;
+  --acento-suave: #c8e6c9;
+  --tierra: #8d6e63;
+  --advertencia: #9a6700;
+  --advertencia-fondo: #fff3cd;
+  --peligro: #b3261e;
+  --peligro-fondo: #fdecea;
+  --radio: 12px;
+  --sombra: 0 2px 10px rgb(35 48 31 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #161b14;
+    --superficie: #1f271c;
+    --borde: #333d2e;
+    --texto: #e6ecd9;
+    --texto-suave: #a8b39a;
+    --acento: #81c784;
+    --acento-fuerte: #a5d6a7;
+    --acento-suave: #2e4a2c;
+    --tierra: #b08d7e;
+    --advertencia: #e2b93b;
+    --advertencia-fondo: #3d3416;
+    --peligro: #ef9a9a;
+    --peligro-fondo: #40211d;
+    --sombra: 0 2px 10px rgb(0 0 0 / 0.35);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--acento-fuerte);
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.marco {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.5rem;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+}
+
+.marca {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.nav-principal {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-principal a {
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  color: var(--texto);
+}
+
+.nav-principal a:hover {
+  background: var(--acento-suave);
+}
+
+.badge-webmcp {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+}
+
+.badge-webmcp.activo {
+  color: var(--acento-fuerte);
+  background: var(--acento-suave);
+  border-color: var(--acento);
+}
+
+.badge-webmcp.inactivo {
+  color: var(--texto-suave);
+  background: transparent;
+}
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.75rem;
+}
+
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1rem;
+  box-shadow: var(--sombra);
+}

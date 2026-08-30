@@ -46,11 +46,12 @@ on a tomato gives Early Blight, with concrete actions.
 11
 00:00:50,000 --> 00:00:56,000
 Now the interesting part. I open PatchWork
-in Chrome with WebMCP enabled.
+inside ChatGPT's browser.
 
 12
 00:00:56,000 --> 00:01:01,000
-It discovers six tools — here they are.
+It discovers six tools — here they are,
+in Site tools.
 
 13
 00:01:01,000 --> 00:01:05,000
@@ -123,7 +124,7 @@ and the repo is linked below.
 
 28
 00:02:33,000 --> 00:02:38,000
-Open it in Chrome or ChatGPT
+Open it in ChatGPT
 and grow something together.
 
 29

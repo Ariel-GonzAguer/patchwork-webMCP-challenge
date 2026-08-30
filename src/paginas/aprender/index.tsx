@@ -13,7 +13,8 @@ const TOOLS: readonly ToolDoc[] = [
   {
     nombre: 'list_crops',
     tipo: 'read',
-    queHace: 'Searches the crop catalog by keyword, sun hours, season or spacing.',
+    queHace:
+      'Searches the crop catalog by keyword, sun hours, season or spacing.',
     ejemplo: '"What crops fit a partial-sun garden in fall?"',
   },
   {
@@ -25,7 +26,8 @@ const TOOLS: readonly ToolDoc[] = [
   {
     nombre: 'design_bed',
     tipo: 'write',
-    queHace: 'Adds or removes crops on a bed, validating sun, spacing and companion rules. Returns warnings the agent can react to.',
+    queHace:
+      'Adds or removes crops on a bed, validating sun, spacing and companion rules. Returns warnings the agent can react to.',
     ejemplo: '"Plant tomatoes, basil and carrots in bed 1, spaced out."',
   },
   {
@@ -55,13 +57,19 @@ export default function Aprender() {
     <Marco>
       <h1>Learn — what the agent sees</h1>
       <p className="intro-aprender">
-        PatchWork registers <strong>6 structured tools</strong> with the browser via the{' '}
-        <a href="https://webmachinelearning.github.io/webmcp/" target="_blank" rel="noreferrer">
+        PatchWork registers <strong>6 structured tools</strong> with the browser
+        via the{' '}
+        <a
+          href="https://webmachinelearning.github.io/webmcp/"
+          target="_blank"
+          rel="noreferrer"
+        >
           WebMCP
         </a>{' '}
-        standard. When you open this app inside ChatGPT&apos;s in-app browser (or Chrome 149+ with
-        the <code>enable-webmcp-testing</code> flag), the agent can call these tools instead of
-        clicking through the UI — and every change shows up live on the shared canvas.
+        standard. When you open this app inside ChatGPT&apos;s in-app browser
+        (or Chrome 149+ with the <code>enable-webmcp-testing</code> flag), the
+        agent can call these tools instead of clicking through the UI — and
+        every change shows up live on the shared canvas.
       </p>
 
       <p className={`estado-webmcp ${activo ? 'activo' : ''}`} role="status">
@@ -91,18 +99,18 @@ export default function Aprender() {
       <h2>Why this matters</h2>
       <ul className="lista-porque">
         <li>
-          <strong>Same state, two actors.</strong> You click a cell, the agent calls{' '}
-          <code>design_bed</code> — both land in the same shared store, instantly visible to each
-          other.
+          <strong>Same state, two actors.</strong> You click a cell, the agent
+          calls <code>design_bed</code> — both land in the same shared store,
+          instantly visible to each other.
         </li>
         <li>
-          <strong>Negotiation, not guessing.</strong> The rules engine returns real horticultural
-          conflicts (antagonists, spacing, sun). The agent can adjust and retry until the plan
-          works.
+          <strong>Negotiation, not guessing.</strong> The rules engine returns
+          real horticultural conflicts (antagonists, spacing, sun). The agent
+          can adjust and retry until the plan works.
         </li>
         <li>
-          <strong>Trust through visibility.</strong> Every agent action is logged in the activity
-          panel, so you always see what it did and why.
+          <strong>Trust through visibility.</strong> Every agent action is
+          logged in the activity panel, so you always see what it did and why.
         </li>
       </ul>
     </Marco>

@@ -14,14 +14,32 @@ describe('store del jardín', () => {
   });
 
   it('colocar agrega una colocación a la cama indicada', () => {
-    useJardinStore.getState().colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, 'Placed tomato');
+    useJardinStore
+      .getState()
+      .colocar(
+        0,
+        { crop_id: 'tomato', x: 0, y: 0 },
+        'human',
+        null,
+        0,
+        'Placed tomato',
+      );
     const estado = useJardinStore.getState();
     expect(estado.beds[0]).toEqual([{ crop_id: 'tomato', x: 0, y: 0 }]);
     expect(estado.beds[1]).toHaveLength(0);
   });
 
   it('colocar registra una entrada en el log con actor y warnings', () => {
-    useJardinStore.getState().colocar(0, { crop_id: 'basil', x: 1, y: 1 }, 'agent', 'design_bed', 2, 'Placed basil');
+    useJardinStore
+      .getState()
+      .colocar(
+        0,
+        { crop_id: 'basil', x: 1, y: 1 },
+        'agent',
+        'design_bed',
+        2,
+        'Placed basil',
+      );
     const entrada = useJardinStore.getState().log[0];
     expect(entrada?.actor).toBe('agent');
     expect(entrada?.tool).toBe('design_bed');
@@ -41,7 +59,11 @@ describe('store del jardín', () => {
   it('registrarTarea crea una tarea pendiente', () => {
     useJardinStore
       .getState()
-      .registrarTarea({ type: 'water', cropId: 'tomato', note: null, dueDay: 3 }, 'agent', 'log_task');
+      .registrarTarea(
+        { type: 'water', cropId: 'tomato', note: null, dueDay: 3 },
+        'agent',
+        'log_task',
+      );
     const tarea = useJardinStore.getState().tasks[0];
     expect(tarea?.done).toBe(false);
     expect(tarea?.dueDay).toBe(3);
@@ -49,8 +71,16 @@ describe('store del jardín', () => {
 
   it('completarTarea marca solo la tarea indicada', () => {
     const { registrarTarea, completarTarea } = useJardinStore.getState();
-    registrarTarea({ type: 'water', cropId: null, note: null, dueDay: 1 }, 'human', null);
-    registrarTarea({ type: 'harvest', cropId: null, note: null, dueDay: 2 }, 'human', null);
+    registrarTarea(
+      { type: 'water', cropId: null, note: null, dueDay: 1 },
+      'human',
+      null,
+    );
+    registrarTarea(
+      { type: 'harvest', cropId: null, note: null, dueDay: 2 },
+      'human',
+      null,
+    );
 
     const primera = useJardinStore.getState().tasks[0];
     if (!primera) throw new Error('No hay tarea');
@@ -62,9 +92,14 @@ describe('store del jardín', () => {
   });
 
   it('reiniciarJardin vuelve al estado inicial', () => {
-    const { colocar, registrarTarea, reiniciarJardin } = useJardinStore.getState();
+    const { colocar, registrarTarea, reiniciarJardin } =
+      useJardinStore.getState();
     colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
-    registrarTarea({ type: 'water', cropId: null, note: null, dueDay: 1 }, 'human', null);
+    registrarTarea(
+      { type: 'water', cropId: null, note: null, dueDay: 1 },
+      'human',
+      null,
+    );
     reiniciarJardin();
 
     const estado = useJardinStore.getState();

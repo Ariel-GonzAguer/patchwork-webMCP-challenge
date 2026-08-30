@@ -18,7 +18,9 @@ describe('página Diagnóstico', () => {
     render(<Diagnostico />);
     const selector = screen.getByLabelText('Affected crop');
     expect(selector).toBeInTheDocument();
-    expect((selector as HTMLSelectElement).options.length).toBeGreaterThanOrEqual(24);
+    expect(
+      (selector as HTMLSelectElement).options.length,
+    ).toBeGreaterThanOrEqual(24);
   });
 
   it('muestra el mensaje inicial pidiendo síntomas', () => {
@@ -36,11 +38,15 @@ describe('página Diagnóstico', () => {
     const usuario = userEvent.setup();
     render(<Diagnostico />);
 
-    await usuario.click(screen.getByRole('button', { name: 'Yellowing leaves' }));
+    await usuario.click(
+      screen.getByRole('button', { name: 'Yellowing leaves' }),
+    );
     await usuario.click(screen.getByRole('button', { name: 'Brown spots' }));
 
     expect(screen.getByText('Early Blight')).toBeInTheDocument();
-    expect(screen.getByLabelText('Diagnosis results')).toHaveTextContent('Remove affected leaves');
+    expect(screen.getByLabelText('Diagnosis results')).toHaveTextContent(
+      'Remove affected leaves',
+    );
   });
 
   it('alterna el estado del chip al hacer click dos veces', async () => {
@@ -68,6 +74,8 @@ describe('página Diagnóstico', () => {
 
   it('muestra el panel "Ask your agent" con prompts', () => {
     render(<Diagnostico />);
-    expect(screen.getByLabelText('Ask your agent')).toHaveTextContent('Diagnose it');
+    expect(screen.getByLabelText('Ask your agent')).toHaveTextContent(
+      'Diagnose it',
+    );
   });
 });

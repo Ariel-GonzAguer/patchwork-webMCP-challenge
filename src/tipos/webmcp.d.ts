@@ -13,7 +13,10 @@ interface WebmcpTool {
   title?: string;
   description: string;
   inputSchema?: Record<string, unknown>;
-  execute: (input: Record<string, unknown>, options: { signal: AbortSignal }) => Promise<unknown>;
+  execute: (
+    input: Record<string, unknown>,
+    options: { signal: AbortSignal },
+  ) => Promise<unknown>;
   annotations?: WebmcpAnnotations;
 }
 

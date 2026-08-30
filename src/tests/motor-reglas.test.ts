@@ -47,7 +47,10 @@ describe('filtrarCultivos', () => {
   });
 
   it('combina criterios: primavera + partial sun', () => {
-    const resultados = motor.filtrarCultivos({ season: 'spring', sun_hours: 5 });
+    const resultados = motor.filtrarCultivos({
+      season: 'spring',
+      sun_hours: 5,
+    });
     expect(resultados.every((c) => c.seasons.includes('spring'))).toBe(true);
     expect(resultados.every((c) => c.sunNeed !== 'full')).toBe(true);
   });
@@ -57,17 +60,35 @@ describe('validarColocacion', () => {
   const grid = { ancho: 4, alto: 6 };
 
   it('acepta una colocación válida sin warnings', () => {
-    const warnings = motor.validarColocacion([], { crop_id: 'tomato', x: 0, y: 0 }, 8, grid.ancho, grid.alto);
+    const warnings = motor.validarColocacion(
+      [],
+      { crop_id: 'tomato', x: 0, y: 0 },
+      8,
+      grid.ancho,
+      grid.alto,
+    );
     expect(warnings).toHaveLength(0);
   });
 
   it('rechaza cultivos desconocidos', () => {
-    const warnings = motor.validarColocacion([], { crop_id: 'dragonfruit', x: 0, y: 0 }, 8, grid.ancho, grid.alto);
+    const warnings = motor.validarColocacion(
+      [],
+      { crop_id: 'dragonfruit', x: 0, y: 0 },
+      8,
+      grid.ancho,
+      grid.alto,
+    );
     expect(warnings[0]?.type).toBe('unknown_crop');
   });
 
   it('rechaza posiciones fuera del grid', () => {
-    const warnings = motor.validarColocacion([], { crop_id: 'tomato', x: 5, y: 0 }, 8, grid.ancho, grid.alto);
+    const warnings = motor.validarColocacion(
+      [],
+      { crop_id: 'tomato', x: 5, y: 0 },
+      8,
+      grid.ancho,
+      grid.alto,
+    );
     expect(warnings[0]?.type).toBe('bounds');
   });
 
@@ -83,7 +104,13 @@ describe('validarColocacion', () => {
   });
 
   it('advierte cuando el cultivo no recibe suficiente sol', () => {
-    const warnings = motor.validarColocacion([], { crop_id: 'tomato', x: 0, y: 0 }, 3, grid.ancho, grid.alto);
+    const warnings = motor.validarColocacion(
+      [],
+      { crop_id: 'tomato', x: 0, y: 0 },
+      3,
+      grid.ancho,
+      grid.alto,
+    );
     expect(warnings.some((w) => w.type === 'sun')).toBe(true);
   });
 
@@ -137,7 +164,11 @@ describe('validarColocacion', () => {
 
 describe('sugerirPlan', () => {
   it('solo sugiere cultivos de la estación pedida', () => {
-    const plan = motor.sugerirPlan({ season: 'summer', sunHours: 8, bedCount: 2 });
+    const plan = motor.sugerirPlan({
+      season: 'summer',
+      sunHours: 8,
+      bedCount: 2,
+    });
     expect(plan.length).toBeGreaterThan(0);
     for (const s of plan) {
       const cultivo = buscarCultivo(s.cropId);
@@ -146,7 +177,11 @@ describe('sugerirPlan', () => {
   });
 
   it('respeta las horas de sol', () => {
-    const plan = motor.sugerirPlan({ season: 'spring', sunHours: 3, bedCount: 1 });
+    const plan = motor.sugerirPlan({
+      season: 'spring',
+      sunHours: 3,
+      bedCount: 1,
+    });
     for (const s of plan) {
       const cultivo = buscarCultivo(s.cropId);
       expect(cultivo?.sunNeed).toBe('shade');
@@ -164,12 +199,20 @@ describe('sugerirPlan', () => {
   });
 
   it('acota la cantidad al número de camas', () => {
-    const plan = motor.sugerirPlan({ season: 'spring', sunHours: 8, bedCount: 1 });
+    const plan = motor.sugerirPlan({
+      season: 'spring',
+      sunHours: 8,
+      bedCount: 1,
+    });
     expect(plan.length).toBeLessThanOrEqual(4);
   });
 
   it('cada sugerencia incluye rationale no vacío', () => {
-    const plan = motor.sugerirPlan({ season: 'fall', sunHours: 8, bedCount: 3 });
+    const plan = motor.sugerirPlan({
+      season: 'fall',
+      sunHours: 8,
+      bedCount: 3,
+    });
     for (const s of plan) {
       expect(s.rationale.length).toBeGreaterThan(0);
     }
@@ -192,16 +235,24 @@ describe('diagnosticar', () => {
   });
 
   it('diagnostica mildiu temprano en tomate con manchas marrones', () => {
-    const resultados = motor.diagnosticar('tomato', ['brown_spots', 'yellowing']);
+    const resultados = motor.diagnosticar('tomato', [
+      'brown_spots',
+      'yellowing',
+    ]);
     expect(resultados[0]?.issueId).toBe('early_blight');
     expect(resultados[0]?.confidence).toBeGreaterThan(0.5);
   });
 
   it('sube la confianza cuando el cultivo coincide con la KB', () => {
     // early_blight incluye tomato en su lista de cultivos afectados.
-    const conCultivo = motor.diagnosticar('tomato', ['brown_spots', 'yellowing']);
+    const conCultivo = motor.diagnosticar('tomato', [
+      'brown_spots',
+      'yellowing',
+    ]);
     const sinCultivo = motor.diagnosticar(null, ['brown_spots', 'yellowing']);
-    expect(conCultivo[0]?.confidence).toBeGreaterThan(sinCultivo[0]?.confidence ?? 0);
+    expect(conCultivo[0]?.confidence).toBeGreaterThan(
+      sinCultivo[0]?.confidence ?? 0,
+    );
   });
 
   it('devuelve máximo 3 candidatos', () => {

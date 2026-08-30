@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/require-await --
+   El fake de `document.modelContext` expone `registerTool` y `getTools` como
+   `async` para coincidir con la firma real del contrato de WebMCP. */
+
 import { beforeEach, describe, expect, it } from 'vitest';
 import { registrarToolsWebmcp } from '../webmcp/registrarTools';
 import { useJardinStore } from '../store/jardin';
@@ -14,7 +18,9 @@ interface ToolRegistrada {
  * Instala un `document.modelContext` fake y devuelve los tools registrados
  * para poder ejecutarlos como lo haría el agente del navegador.
  */
-async function instalarModelContextFake(): Promise<Map<string, ToolRegistrada>> {
+async function instalarModelContextFake(): Promise<
+  Map<string, ToolRegistrada>
+> {
   const tools = new Map<string, ToolRegistrada>();
 
   const modelContext = {
@@ -88,7 +94,9 @@ describe('tool list_crops', () => {
 
   it('filtra por query parcial', async () => {
     const tools = await instalarModelContextFake();
-    const resultado = (await tools.get('list_crops')!.execute({ query: 'tom' })) as {
+    const resultado = (await tools
+      .get('list_crops')!
+      .execute({ query: 'tom' })) as {
       crops: { id: string }[];
     };
     expect(resultado.crops.map((c) => c.id)).toEqual(['tomato']);
@@ -96,14 +104,18 @@ describe('tool list_crops', () => {
 
   it('devuelve todo el catálogo sin filtros', async () => {
     const tools = await instalarModelContextFake();
-    const resultado = (await tools.get('list_crops')!.execute({})) as { count: number };
+    const resultado = (await tools.get('list_crops')!.execute({})) as {
+      count: number;
+    };
     expect(resultado.count).toBeGreaterThanOrEqual(24);
   });
 });
 
 describe('tool get_garden_state', () => {
   it('refleja las colocaciones actuales del huerto', async () => {
-    useJardinStore.getState().colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
+    useJardinStore
+      .getState()
+      .colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
 
     const tools = await instalarModelContextFake();
     const estado = (await tools.get('get_garden_state')!.execute({})) as {
@@ -135,7 +147,9 @@ describe('tool design_bed', () => {
   });
 
   it('devuelve warnings para antagonistas', async () => {
-    useJardinStore.getState().colocar(0, { crop_id: 'potato', x: 1, y: 0 }, 'human', null, 0, '');
+    useJardinStore
+      .getState()
+      .colocar(0, { crop_id: 'potato', x: 1, y: 0 }, 'human', null, 0, '');
 
     const tools = await instalarModelContextFake();
     const resultado = (await tools.get('design_bed')!.execute({
@@ -144,7 +158,9 @@ describe('tool design_bed', () => {
       placements: [{ crop_id: 'tomato', x: 0, y: 0 }],
     })) as { warnings: string[] };
 
-    expect(resultado.warnings.some((w) => /poor companions/i.test(w))).toBe(true);
+    expect(resultado.warnings.some((w) => /poor companions/i.test(w))).toBe(
+      true,
+    );
   });
 
   it('rechaza cultivos desconocidos con error', async () => {
@@ -178,13 +194,17 @@ describe('tool design_bed', () => {
     });
 
     const log = useJardinStore.getState().log;
-    const entradaAgente = log.find((e) => e.actor === 'agent' && e.tool === 'design_bed');
+    const entradaAgente = log.find(
+      (e) => e.actor === 'agent' && e.tool === 'design_bed',
+    );
     expect(entradaAgente).toBeDefined();
     expect(entradaAgente?.message).toContain('basil');
   });
 
   it('modo remove elimina una celda ocupada', async () => {
-    useJardinStore.getState().colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
+    useJardinStore
+      .getState()
+      .colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
 
     const tools = await instalarModelContextFake();
     await tools.get('design_bed')!.execute({

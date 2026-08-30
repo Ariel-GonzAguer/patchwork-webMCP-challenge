@@ -30,8 +30,11 @@ const COLOR_SEVERIDAD: Record<ResultadoDiagnostico['severity'], string> = {
 };
 
 function Diagnostico() {
-  const [cultivoSeleccionado, setCultivoSeleccionado] = useState<string>('tomato');
-  const [sintomasActivos, setSintomasActivos] = useState<Set<TipoSintoma>>(new Set());
+  const [cultivoSeleccionado, setCultivoSeleccionado] =
+    useState<string>('tomato');
+  const [sintomasActivos, setSintomasActivos] = useState<Set<TipoSintoma>>(
+    new Set(),
+  );
 
   function alternarSintoma(sintoma: TipoSintoma) {
     setSintomasActivos((previos) => {
@@ -45,14 +48,17 @@ function Diagnostico() {
     });
   }
 
-  const resultados = motor.diagnosticar(cultivoSeleccionado, [...sintomasActivos]);
+  const resultados = motor.diagnosticar(cultivoSeleccionado, [
+    ...sintomasActivos,
+  ]);
 
   return (
     <Marco>
       <h1>Diagnose</h1>
       <p className="intro-diagnostico">
-        Select the affected crop and the symptoms you see. The rules engine matches them
-        against a knowledge base of common problems and suggests care actions.
+        Select the affected crop and the symptoms you see. The rules engine
+        matches them against a knowledge base of common problems and suggests
+        care actions.
       </p>
 
       <div className="diagnostico-layout">
@@ -94,13 +100,19 @@ function Diagnostico() {
             </fieldset>
           </div>
 
-          <section className="resultados" aria-label="Diagnosis results" aria-live="polite">
+          <section
+            className="resultados"
+            aria-label="Diagnosis results"
+            aria-live="polite"
+          >
             {sintomasActivos.size === 0 ? (
-              <p className="sin-resultados">Select at least one symptom to get a diagnosis.</p>
+              <p className="sin-resultados">
+                Select at least one symptom to get a diagnosis.
+              </p>
             ) : resultados.length === 0 ? (
               <p className="sin-resultados">
-                No matches for those symptoms. Try adding more, or check the Learn page for what
-                the agent can do.
+                No matches for those symptoms. Try adding more, or check the
+                Learn page for what the agent can do.
               </p>
             ) : (
               <ul className="lista-diagnosticos">
@@ -108,7 +120,9 @@ function Diagnostico() {
                   <li key={resultado.issueId} className="diagnostico tarjeta">
                     <div className="cabecera-diagnostico">
                       <h2>{resultado.name}</h2>
-                      <span className={`severidad ${COLOR_SEVERIDAD[resultado.severity]}`}>
+                      <span
+                        className={`severidad ${COLOR_SEVERIDAD[resultado.severity]}`}
+                      >
                         {resultado.severity} severity
                       </span>
                       <span className="confianza">
@@ -118,7 +132,9 @@ function Diagnostico() {
                     <p className="sintomas-coincidentes">
                       <strong>Matched:</strong>{' '}
                       {resultado.matchedSymptoms
-                        .map((sintoma) => ETIQUETAS_SINTOMAS[sintoma].toLowerCase())
+                        .map((sintoma) =>
+                          ETIQUETAS_SINTOMAS[sintoma].toLowerCase(),
+                        )
                         .join(', ')}
                     </p>
                     <ul className="lista-acciones">
@@ -133,13 +149,20 @@ function Diagnostico() {
           </section>
         </div>
 
-        <aside className="tarjeta sugerencia-agente" aria-label="Ask your agent">
+        <aside
+          className="tarjeta sugerencia-agente"
+          aria-label="Ask your agent"
+        >
           <h2>Ask your agent</h2>
           <p>
-            Open PatchWork in ChatGPT and let the agent diagnose for you. Try prompts like:
+            Open PatchWork in ChatGPT and let the agent diagnose for you. Try
+            prompts like:
           </p>
           <ul>
-            <li>“My tomato leaves are turning yellow with brown spots. Diagnose it.”</li>
+            <li>
+              “My tomato leaves are turning yellow with brown spots. Diagnose
+              it.”
+            </li>
             <li>“Check the garden state and tell me what needs watering.”</li>
             <li>“Plan a fall garden with 4 hours of sun.”</li>
           </ul>

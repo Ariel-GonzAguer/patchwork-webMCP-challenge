@@ -19,7 +19,9 @@ describe('catálogo de cultivos', () => {
         expect(ids.has(companera), `${cultivo.id} → ${companera}`).toBe(true);
       }
       for (const antagonista of cultivo.antagonists) {
-        expect(ids.has(antagonista), `${cultivo.id} → ${antagonista}`).toBe(true);
+        expect(ids.has(antagonista), `${cultivo.id} → ${antagonista}`).toBe(
+          true,
+        );
       }
     }
   });
@@ -51,7 +53,9 @@ describe('KB de problemas', () => {
     for (const problema of PROBLEMAS) {
       if (problema.cropIds !== null) {
         for (const cropId of problema.cropIds) {
-          expect(idsCultivos.has(cropId), `${problema.id} → ${cropId}`).toBe(true);
+          expect(idsCultivos.has(cropId), `${problema.id} → ${cropId}`).toBe(
+            true,
+          );
         }
       }
     }

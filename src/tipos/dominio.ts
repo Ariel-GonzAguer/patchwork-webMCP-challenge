@@ -32,7 +32,8 @@ export interface Colocacion {
   y: number;
 }
 
-export type TipoWarning = 'bounds' | 'unknown_crop' | 'duplicate' | 'sun' | 'spacing' | 'antagonist';
+export type TipoWarning =
+  'bounds' | 'unknown_crop' | 'duplicate' | 'sun' | 'spacing' | 'antagonist';
 
 export interface Warning {
   type: TipoWarning;
@@ -104,4 +105,10 @@ export interface SugerenciaPlan {
 
 export type TipoTarea = 'water' | 'fertilize' | 'harvest' | 'prune' | 'observe';
 
-export const TIPOS_TAREA = ['water', 'fertilize', 'harvest', 'prune', 'observe'] as const;
+export const TIPOS_TAREA = [
+  'water',
+  'fertilize',
+  'harvest',
+  'prune',
+  'observe',
+] as const;

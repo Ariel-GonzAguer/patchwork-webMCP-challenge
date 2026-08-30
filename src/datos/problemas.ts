@@ -7,7 +7,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['brown_spots', 'yellowing', 'wilting'],
     cropIds: ['tomato', 'potato', 'pepper'],
     severity: 'high',
-    actions: ['Remove affected leaves immediately.', 'Apply copper fungicide.', 'Water at the base, keep foliage dry.'],
+    actions: [
+      'Remove affected leaves immediately.',
+      'Apply copper fungicide.',
+      'Water at the base, keep foliage dry.',
+    ],
   },
   {
     id: 'late_blight',
@@ -15,7 +19,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['black_spots', 'wilting', 'rot'],
     cropIds: ['tomato', 'potato'],
     severity: 'high',
-    actions: ['Remove and destroy infected plants (do not compost).', 'Improve air circulation.', 'Apply fungicide preventively on remaining plants.'],
+    actions: [
+      'Remove and destroy infected plants (do not compost).',
+      'Improve air circulation.',
+      'Apply fungicide preventively on remaining plants.',
+    ],
   },
   {
     id: 'powdery_mildew',
@@ -23,7 +31,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['white_powder', 'curling'],
     cropIds: ['zucchini', 'cucumber', 'mint', 'chard'],
     severity: 'medium',
-    actions: ['Thin plants to improve airflow.', 'Spray a mix of 1 part milk to 9 parts water weekly.', 'Avoid overhead watering.'],
+    actions: [
+      'Thin plants to improve airflow.',
+      'Spray a mix of 1 part milk to 9 parts water weekly.',
+      'Avoid overhead watering.',
+    ],
   },
   {
     id: 'blossom_end_rot',
@@ -31,7 +43,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['rot', 'brown_spots'],
     cropIds: ['tomato', 'pepper', 'zucchini'],
     severity: 'medium',
-    actions: ['Water consistently — uneven watering is the main cause.', 'Mulch to keep soil moisture stable.', 'It is a calcium uptake issue, not a disease: affected fruits should be removed.'],
+    actions: [
+      'Water consistently — uneven watering is the main cause.',
+      'Mulch to keep soil moisture stable.',
+      'It is a calcium uptake issue, not a disease: affected fruits should be removed.',
+    ],
   },
   {
     id: 'aphids',
@@ -39,7 +55,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['sticky', 'curling', 'yellowing', 'stunted'],
     cropIds: null,
     severity: 'medium',
-    actions: ['Spray with a strong jet of water.', 'Introduce ladybugs or lacewings.', 'Apply insecticidal soap to infested shoots.'],
+    actions: [
+      'Spray with a strong jet of water.',
+      'Introduce ladybugs or lacewings.',
+      'Apply insecticidal soap to infested shoots.',
+    ],
   },
   {
     id: 'whitefly',
@@ -47,7 +67,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['sticky', 'yellowing', 'wilting'],
     cropIds: ['tomato', 'cucumber', 'zucchini', 'cabbage'],
     severity: 'medium',
-    actions: ['Use yellow sticky traps.', 'Spray insecticidal soap under the leaves.', 'Remove heavily infested leaves.'],
+    actions: [
+      'Use yellow sticky traps.',
+      'Spray insecticidal soap under the leaves.',
+      'Remove heavily infested leaves.',
+    ],
   },
   {
     id: 'cutworm',
@@ -55,7 +79,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['chewed', 'wilting'],
     cropIds: ['tomato', 'pepper', 'lettuce', 'cabbage', 'bean'],
     severity: 'medium',
-    actions: ['Place cardboard collars around seedling stems.', 'Check soil at dusk and remove larvae by hand.', 'Keep the bed free of plant debris.'],
+    actions: [
+      'Place cardboard collars around seedling stems.',
+      'Check soil at dusk and remove larvae by hand.',
+      'Keep the bed free of plant debris.',
+    ],
   },
   {
     id: 'slugs',
@@ -63,7 +91,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['holes', 'chewed'],
     cropIds: ['lettuce', 'cabbage', 'strawberry', 'spinach', 'chard'],
     severity: 'medium',
-    actions: ['Set beer traps or hand-pick at night.', 'Use crushed eggshells or copper tape barriers.', 'Reduce moisture and hiding spots near the bed.'],
+    actions: [
+      'Set beer traps or hand-pick at night.',
+      'Use crushed eggshells or copper tape barriers.',
+      'Reduce moisture and hiding spots near the bed.',
+    ],
   },
   {
     id: 'overwatering',
@@ -71,7 +103,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['yellowing', 'wilting', 'rot'],
     cropIds: null,
     severity: 'high',
-    actions: ['Stop watering until the top 2-3 cm of soil dries.', 'Check that the bed drains well.', 'Remove plants with mushy stems — they will not recover.'],
+    actions: [
+      'Stop watering until the top 2-3 cm of soil dries.',
+      'Check that the bed drains well.',
+      'Remove plants with mushy stems — they will not recover.',
+    ],
   },
   {
     id: 'nitrogen_deficiency',
@@ -79,7 +115,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['yellowing', 'stunted'],
     cropIds: ['corn', 'tomato', 'lettuce', 'cabbage'],
     severity: 'low',
-    actions: ['Feed with a balanced organic fertilizer.', 'Add compost around the plant base.', 'Plant a nitrogen-fixing companion like beans next season.'],
+    actions: [
+      'Feed with a balanced organic fertilizer.',
+      'Add compost around the plant base.',
+      'Plant a nitrogen-fixing companion like beans next season.',
+    ],
   },
   {
     id: 'tomato_hornworm',
@@ -87,7 +127,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['chewed', 'holes'],
     cropIds: ['tomato', 'pepper'],
     severity: 'medium',
-    actions: ['Inspect plants at dawn for large green caterpillars and remove them.', 'Plant dill or basil nearby to attract parasitic wasps.', 'Apply Bt (Bacillus thuringiensis) if infestation is heavy.'],
+    actions: [
+      'Inspect plants at dawn for large green caterpillars and remove them.',
+      'Plant dill or basil nearby to attract parasitic wasps.',
+      'Apply Bt (Bacillus thuringiensis) if infestation is heavy.',
+    ],
   },
   {
     id: 'mosaic_virus',
@@ -95,7 +139,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['mottled', 'curling', 'stunted'],
     cropIds: ['tomato', 'pepper', 'cucumber', 'bean'],
     severity: 'high',
-    actions: ['Remove and destroy infected plants.', 'Control aphids, which spread the virus.', 'Wash hands and tools after handling infected plants.'],
+    actions: [
+      'Remove and destroy infected plants.',
+      'Control aphids, which spread the virus.',
+      'Wash hands and tools after handling infected plants.',
+    ],
   },
   {
     id: 'downy_mildew',
@@ -103,7 +151,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['yellowing', 'brown_spots'],
     cropIds: ['lettuce', 'spinach', 'cucumber', 'basil', 'cabbage'],
     severity: 'medium',
-    actions: ['Improve air circulation between plants.', 'Water in the morning so foliage dries by evening.', 'Apply copper fungicide on leaf undersides.'],
+    actions: [
+      'Improve air circulation between plants.',
+      'Water in the morning so foliage dries by evening.',
+      'Apply copper fungicide on leaf undersides.',
+    ],
   },
   {
     id: 'leaf_miner',
@@ -111,7 +163,11 @@ export const PROBLEMAS: readonly Problema[] = [
     symptoms: ['holes', 'mottled', 'stunted'],
     cropIds: ['chard', 'spinach', 'lettuce', 'tomato'],
     severity: 'low',
-    actions: ['Remove and dispose of leaves with visible tunnels.', 'Use row covers early in the season.', 'Plant marigold or nasturtium nearby as a trap crop.'],
+    actions: [
+      'Remove and dispose of leaves with visible tunnels.',
+      'Use row covers early in the season.',
+      'Plant marigold or nasturtium nearby as a trap crop.',
+    ],
   },
 ] as const;
 

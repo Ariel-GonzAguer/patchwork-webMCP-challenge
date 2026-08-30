@@ -73,7 +73,12 @@ export class MotorReglas {
       return warnings;
     }
 
-    if (nueva.x < 0 || nueva.y < 0 || nueva.x >= anchoGrid || nueva.y >= altoGrid) {
+    if (
+      nueva.x < 0 ||
+      nueva.y < 0 ||
+      nueva.x >= anchoGrid ||
+      nueva.y >= altoGrid
+    ) {
       warnings.push({
         type: 'bounds',
         message: `${cultivo.name} at (${nueva.x}, ${nueva.y}) is outside the bed (grid ${anchoGrid}x${altoGrid}).`,
@@ -108,7 +113,8 @@ export class MotorReglas {
       const vecino = buscarCultivo(otra.crop_id);
       if (!vecino) continue;
 
-      const distanciaMinimaCeldas = (cultivo.spacingCm + vecino.spacingCm) / 2 / CM_POR_CELDA;
+      const distanciaMinimaCeldas =
+        (cultivo.spacingCm + vecino.spacingCm) / 2 / CM_POR_CELDA;
       const distanciaReal = Math.max(
         Math.abs(otra.x - nueva.x),
         Math.abs(otra.y - nueva.y),
@@ -123,7 +129,10 @@ export class MotorReglas {
         });
       }
 
-      if (cultivo.antagonists.includes(vecino.id) || vecino.antagonists.includes(cultivo.id)) {
+      if (
+        cultivo.antagonists.includes(vecino.id) ||
+        vecino.antagonists.includes(cultivo.id)
+      ) {
         warnings.push({
           type: 'antagonist',
           message: `${cultivo.name} and ${vecino.name} are poor companions.`,
@@ -145,7 +154,8 @@ export class MotorReglas {
     const preferidos = new Set(preferences ?? []);
 
     const candidatos = CULTIVOS.filter(
-      (cultivo) => cultivo.seasons.includes(season) && cumpleSol(cultivo, sunHours),
+      (cultivo) =>
+        cultivo.seasons.includes(season) && cumpleSol(cultivo, sunHours),
     );
 
     const puntuados = candidatos.map((cultivo) => {
@@ -160,7 +170,10 @@ export class MotorReglas {
         puntaje += 2;
       }
 
-      if (preferidos.has(cultivo.id) || preferidos.has(cultivo.name.toLowerCase())) {
+      if (
+        preferidos.has(cultivo.id) ||
+        preferidos.has(cultivo.name.toLowerCase())
+      ) {
         rationale.push('You asked for this one.');
         puntaje += 3;
       }
@@ -192,7 +205,10 @@ export class MotorReglas {
    * Diagnostica a partir de síntomas y cultivo afectado. Devuelve candidatos
    * ordenados por confianza (top 3), con las acciones recomendadas.
    */
-  diagnosticar(cropId: string | null, symptoms: readonly TipoSintoma[]): ResultadoDiagnostico[] {
+  diagnosticar(
+    cropId: string | null,
+    symptoms: readonly TipoSintoma[],
+  ): ResultadoDiagnostico[] {
     if (symptoms.length === 0) return [];
 
     const resultados = PROBLEMAS.filter((problema) => {

@@ -25,7 +25,9 @@ function Calendario() {
   const completarTarea = useJardinStore((estado) => estado.completarTarea);
   const gardenName = useJardinStore((estado) => estado.gardenName);
 
-  const ordenadas = [...tasks].sort((a, b) => a.dueDay - b.dueDay || Number(a.done) - Number(b.done));
+  const ordenadas = [...tasks].sort(
+    (a, b) => a.dueDay - b.dueDay || Number(a.done) - Number(b.done),
+  );
   const pendientes = ordenadas.filter((t) => !t.done).length;
 
   return (
@@ -37,14 +39,20 @@ function Calendario() {
 
       {ordenadas.length === 0 ? (
         <p className="log-vacio">
-          No tasks yet. Plant something in the Garden and care tasks will appear here.
+          No tasks yet. Plant something in the Garden and care tasks will appear
+          here.
         </p>
       ) : (
         <ul className="lista-tareas" aria-label="Garden tasks">
           {ordenadas.map((tarea) => {
-            const cultivo = tarea.cropId ? buscarCultivo(tarea.cropId) : undefined;
+            const cultivo = tarea.cropId
+              ? buscarCultivo(tarea.cropId)
+              : undefined;
             return (
-              <li key={tarea.id} className={`tarea ${tarea.done ? 'hecha' : ''}`}>
+              <li
+                key={tarea.id}
+                className={`tarea ${tarea.done ? 'hecha' : ''}`}
+              >
                 <label className="etiqueta-tarea">
                   <input
                     type="checkbox"
@@ -52,7 +60,9 @@ function Calendario() {
                     onChange={() => completarTarea(tarea.id)}
                     aria-label={`Mark ${ETIQUETAS_TAREA[tarea.type]} ${cultivo?.name ?? ''} as ${tarea.done ? 'pending' : 'done'}`}
                   />
-                  <span className="icono-tarea">{ICONOS_TAREA[tarea.type]}</span>
+                  <span className="icono-tarea">
+                    {ICONOS_TAREA[tarea.type]}
+                  </span>
                   <span className="texto-tarea">
                     <strong>{ETIQUETAS_TAREA[tarea.type]}</strong>
                     {cultivo ? ` ${cultivo.emoji} ${cultivo.name}` : ''}

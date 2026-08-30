@@ -16,7 +16,10 @@ export default function DetalleCultivo({ cultivoId }: DetalleCultivoProps) {
   }[cultivo.sunNeed];
 
   return (
-    <section className="detalle-cultivo tarjeta" aria-label={`Details for ${cultivo.name}`}>
+    <section
+      className="detalle-cultivo tarjeta"
+      aria-label={`Details for ${cultivo.name}`}
+    >
       <h2>
         {cultivo.emoji} {cultivo.name}
       </h2>
@@ -39,13 +42,17 @@ export default function DetalleCultivo({ cultivoId }: DetalleCultivoProps) {
         <li>
           <strong>Good companions:</strong>{' '}
           {cultivo.companions.length > 0
-            ? cultivo.companions.map((id) => buscarCultivo(id)?.name ?? id).join(', ')
+            ? cultivo.companions
+                .map((id) => buscarCultivo(id)?.name ?? id)
+                .join(', ')
             : 'None listed'}
         </li>
         <li>
           <strong>Avoid:</strong>{' '}
           {cultivo.antagonists.length > 0
-            ? cultivo.antagonists.map((id) => buscarCultivo(id)?.name ?? id).join(', ')
+            ? cultivo.antagonists
+                .map((id) => buscarCultivo(id)?.name ?? id)
+                .join(', ')
             : 'None listed'}
         </li>
       </ul>

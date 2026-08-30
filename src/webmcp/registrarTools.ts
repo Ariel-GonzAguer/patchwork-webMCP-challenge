@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/require-await --
+   La API de WebMCP exige que los handlers `execute` sean `async` aunque el
+   motor de reglas sea síncrono. El contrato externo (browser/agent) asume
+   `Promise<unknown>` como tipo de retorno. */
+
 import { useJardinStore } from '../store/jardin';
 import { CULTIVOS, buscarCultivo } from '../datos/cultivos';
 import { MotorReglas } from '../clases/MotorReglas';
@@ -44,7 +49,10 @@ function cultivoACatalogo(cultivoId: string) {
 
 function esEntero(valor: unknown, min: number, max: number): valor is number {
   return (
-    typeof valor === 'number' && Number.isInteger(valor) && valor >= min && valor <= max
+    typeof valor === 'number' &&
+    Number.isInteger(valor) &&
+    valor >= min &&
+    valor <= max
   );
 }
 
@@ -83,14 +91,16 @@ export async function registrarToolsWebmcp(): Promise<void> {
         },
         min_space_cm: {
           type: 'number',
-          description: 'Only return crops whose spacing fits within this many cm.',
+          description:
+            'Only return crops whose spacing fits within this many cm.',
         },
       },
     },
     annotations: { readOnlyHint: true },
     execute: async (input) => {
       const query = typeof input.query === 'string' ? input.query : undefined;
-      const sun_hours = typeof input.sun_hours === 'number' ? input.sun_hours : undefined;
+      const sun_hours =
+        typeof input.sun_hours === 'number' ? input.sun_hours : undefined;
       const season = ESTACIONES.includes(input.season as Estacion)
         ? (input.season as Estacion)
         : undefined;
@@ -106,7 +116,9 @@ export async function registrarToolsWebmcp(): Promise<void> {
       const resultados = motor
         .filtrarCultivos(criterios)
         .map((cultivo) => cultivoACatalogo(cultivo.id))
-        .filter((cultivo): cultivo is NonNullable<typeof cultivo> => cultivo !== null);
+        .filter(
+          (cultivo): cultivo is NonNullable<typeof cultivo> => cultivo !== null,
+        );
 
       return {
         count: resultados.length,
@@ -146,13 +158,15 @@ export async function registrarToolsWebmcp(): Promise<void> {
             };
           }),
         })),
-        pendingTasks: estado.tasks.filter((tarea) => !tarea.done).map((tarea) => ({
-          id: tarea.id,
-          type: tarea.type,
-          crop_id: tarea.cropId,
-          note: tarea.note,
-          dueDay: tarea.dueDay,
-        })),
+        pendingTasks: estado.tasks
+          .filter((tarea) => !tarea.done)
+          .map((tarea) => ({
+            id: tarea.id,
+            type: tarea.type,
+            crop_id: tarea.cropId,
+            note: tarea.note,
+            dueDay: tarea.dueDay,
+          })),
       };
     },
   });
@@ -179,7 +193,10 @@ export async function registrarToolsWebmcp(): Promise<void> {
           items: {
             type: 'object',
             properties: {
-              crop_id: { type: 'string', description: 'Crop id from list_crops.' },
+              crop_id: {
+                type: 'string',
+                description: 'Crop id from list_crops.',
+              },
               x: { type: 'number', description: 'Column, 0-3.' },
               y: { type: 'number', description: 'Row, 0-5.' },
             },
@@ -192,12 +209,21 @@ export async function registrarToolsWebmcp(): Promise<void> {
       const estado = registro();
 
       const bedIndex = typeof input.bed === 'number' ? input.bed : NaN;
-      if (!Number.isInteger(bedIndex) || bedIndex < 1 || bedIndex > estado.beds.length) {
-        return { error: `bed must be an integer between 1 and ${estado.beds.length}.` };
+      if (
+        !Number.isInteger(bedIndex) ||
+        bedIndex < 1 ||
+        bedIndex > estado.beds.length
+      ) {
+        return {
+          error: `bed must be an integer between 1 and ${estado.beds.length}.`,
+        };
       }
 
       const mode = input.mode === 'remove' ? 'remove' : 'add';
-      if (typeof input.mode !== 'string' || !['add', 'remove'].includes(input.mode as string)) {
+      if (
+        typeof input.mode !== 'string' ||
+        !['add', 'remove'].includes(input.mode)
+      ) {
         return { error: 'mode must be "add" or "remove".' };
       }
 
@@ -219,8 +245,13 @@ export async function registrarToolsWebmcp(): Promise<void> {
         const y = item.y;
 
         if (mode === 'remove') {
-          if (!esEntero(x, 0, ANCHO_GRID - 1) || !esEntero(y, 0, ALTO_GRID - 1)) {
-            errores.push(`Invalid cell coordinates (${String(x)}, ${String(y)}).`);
+          if (
+            !esEntero(x, 0, ANCHO_GRID - 1) ||
+            !esEntero(y, 0, ALTO_GRID - 1)
+          ) {
+            errores.push(
+              `Invalid cell coordinates (${String(x)}, ${String(y)}).`,
+            );
             continue;
           }
           validas.push({ crop_id: crop_id || '', x, y });
@@ -254,7 +285,9 @@ export async function registrarToolsWebmcp(): Promise<void> {
             (c) => c.x === colocacion.x && c.y === colocacion.y,
           );
           if (!existia) {
-            errores.push(`Cell (${colocacion.x}, ${colocacion.y}) is already empty.`);
+            errores.push(
+              `Cell (${colocacion.x}, ${colocacion.y}) is already empty.`,
+            );
             continue;
           }
           registro().retirar(
@@ -288,7 +321,9 @@ export async function registrarToolsWebmcp(): Promise<void> {
           ALTO_GRID,
         );
 
-        if (warnings.some((w) => w.type === 'bounds' || w.type === 'unknown_crop')) {
+        if (
+          warnings.some((w) => w.type === 'bounds' || w.type === 'unknown_crop')
+        ) {
           errores.push(warnings[0]?.message ?? 'Invalid placement.');
           continue;
         }
@@ -301,7 +336,9 @@ export async function registrarToolsWebmcp(): Promise<void> {
           warnings.length,
           `Placed ${colocacion.crop_id} in bed ${bedIndex} (${colocacion.x}, ${colocacion.y})`,
         );
-        aplicadas.push(`${colocacion.crop_id} at (${colocacion.x}, ${colocacion.y})`);
+        aplicadas.push(
+          `${colocacion.crop_id} at (${colocacion.x}, ${colocacion.y})`,
+        );
 
         for (const w of warnings) {
           todasLasAdvertencias.push(w.message);
@@ -338,7 +375,8 @@ export async function registrarToolsWebmcp(): Promise<void> {
         },
         sun_hours: {
           type: 'number',
-          description: 'Hours of sun per day (e.g. 8 for full sun, 4 for partial, 3 for shade).',
+          description:
+            'Hours of sun per day (e.g. 8 for full sun, 4 for partial, 3 for shade).',
         },
         bed_count: {
           type: 'number',
@@ -357,7 +395,9 @@ export async function registrarToolsWebmcp(): Promise<void> {
         ? (input.season as Estacion)
         : motor.estacionActual();
       const sun_hours =
-        typeof input.sun_hours === 'number' ? input.sun_hours : registro().sunHours;
+        typeof input.sun_hours === 'number'
+          ? input.sun_hours
+          : registro().sunHours;
       const bed_count =
         typeof input.bed_count === 'number' && input.bed_count >= 1
           ? Math.min(Math.floor(input.bed_count), 4)
@@ -412,17 +452,22 @@ export async function registrarToolsWebmcp(): Promise<void> {
         },
         note: {
           type: 'string',
-          description: 'Short human-readable note, e.g. "Water deeply, soil is dry".',
+          description:
+            'Short human-readable note, e.g. "Water deeply, soil is dry".',
         },
         due_day: {
           type: 'number',
-          description: 'Garden day when this is due (0 = today). Defaults to 0.',
+          description:
+            'Garden day when this is due (0 = today). Defaults to 0.',
         },
       },
     },
     execute: async (input) => {
       const type = input.type;
-      if (typeof type !== 'string' || !TIPOS_TAREA.includes(type as TipoTarea)) {
+      if (
+        typeof type !== 'string' ||
+        !TIPOS_TAREA.includes(type as TipoTarea)
+      ) {
         return {
           error: `type must be one of: ${TIPOS_TAREA.join(', ')}.`,
         };
@@ -437,9 +482,12 @@ export async function registrarToolsWebmcp(): Promise<void> {
         return { error: `Unknown crop_id "${input.crop_id}". Use list_crops.` };
       }
 
-      const note = typeof input.note === 'string' ? input.note.slice(0, 200) : null;
+      const note =
+        typeof input.note === 'string' ? input.note.slice(0, 200) : null;
       const due_day =
-        typeof input.due_day === 'number' && Number.isInteger(input.due_day) && input.due_day >= 0
+        typeof input.due_day === 'number' &&
+        Number.isInteger(input.due_day) &&
+        input.due_day >= 0
           ? input.due_day
           : 0;
 
@@ -487,10 +535,13 @@ export async function registrarToolsWebmcp(): Promise<void> {
           ? input.crop_id
           : null;
 
-      const sintomasBrutos = Array.isArray(input.symptoms) ? input.symptoms : [];
+      const sintomasBrutos = Array.isArray(input.symptoms)
+        ? input.symptoms
+        : [];
       const sintomas: TipoSintoma[] = sintomasBrutos.filter(
         (sintoma): sintoma is TipoSintoma =>
-          typeof sintoma === 'string' && SINTOMAS.includes(sintoma as TipoSintoma),
+          typeof sintoma === 'string' &&
+          SINTOMAS.includes(sintoma as TipoSintoma),
       );
 
       if (sintomas.length === 0) {

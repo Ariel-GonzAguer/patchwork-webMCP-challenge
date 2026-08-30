@@ -29,9 +29,9 @@ describe('página Jardin', () => {
 
   it('las celdas vacías tienen aria-label accesible', () => {
     renderizar();
-    expect(
-      screen.getAllByRole('gridcell')[0],
-    ).toHaveAccessibleName(/Empty cell at column 1, row 1/);
+    expect(screen.getAllByRole('gridcell')[0]).toHaveAccessibleName(
+      /Empty cell at column 1, row 1/,
+    );
   });
 
   it('plantar con click agrega el cultivo y lo muestra con emoji', async () => {
@@ -46,7 +46,9 @@ describe('página Jardin', () => {
 
   it('al plantar un antagonista se muestra el aviso', async () => {
     const usuario = userEvent.setup();
-    useJardinStore.getState().colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
+    useJardinStore
+      .getState()
+      .colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
 
     renderizar();
 
@@ -58,7 +60,9 @@ describe('página Jardin', () => {
 
   it('click sobre celda ocupada la remueve', async () => {
     const usuario = userEvent.setup();
-    useJardinStore.getState().colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
+    useJardinStore
+      .getState()
+      .colocar(0, { crop_id: 'tomato', x: 0, y: 0 }, 'human', null, 0, '');
 
     renderizar();
     await usuario.click(screen.getAllByRole('gridcell')[0]!);
@@ -68,16 +72,29 @@ describe('página Jardin', () => {
 
   it('el detalle del cultivo muestra información del seleccionado', () => {
     renderizar();
-    expect(screen.getByLabelText('Details for Tomato')).toHaveTextContent('Full sun');
+    expect(screen.getByLabelText('Details for Tomato')).toHaveTextContent(
+      'Full sun',
+    );
   });
 
   it('el registro de actividad muestra entradas del agente', () => {
     useJardinStore
       .getState()
-      .colocar(0, { crop_id: 'basil', x: 2, y: 2 }, 'agent', 'design_bed', 1, 'Placed basil');
+      .colocar(
+        0,
+        { crop_id: 'basil', x: 2, y: 2 },
+        'agent',
+        'design_bed',
+        1,
+        'Placed basil',
+      );
 
     renderizar();
-    expect(screen.getByLabelText('Garden activity log')).toHaveTextContent('design_bed');
-    expect(screen.getByLabelText('Garden activity log')).toHaveTextContent('1 warnings');
+    expect(screen.getByLabelText('Garden activity log')).toHaveTextContent(
+      'design_bed',
+    );
+    expect(screen.getByLabelText('Garden activity log')).toHaveTextContent(
+      '1 warnings',
+    );
   });
 });

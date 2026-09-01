@@ -4,6 +4,17 @@ A shared urban garden where you and your AI agent plan, plant, and care together
 
 Built for the [OpenAI WebMCP Challenge](https://webmcp.devpost.com) (Aug 25 – Sep 3, 2026).
 
+You can try it live at [https://patchwork-webmcp-challenge.netlify.app/](https://patchwork-webmcp-challenge.netlify.app/).
+
+Watch a demo video: [→ Here](https://www.youtube.com/watch?v=nlM9p7lj1Io)
+
+## How to use
+
+There are two ways to use PatchWork:
+
+1. **ChatGPT desktop app** (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically; check "Available site tools" in the address bar. Try: *"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."*
+2. **Chrome 149+**: enable `chrome://flags/#enable-webmcp-testing`, install the oficial [WebMCP extension](https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd), go to the PatchWork URL, open the extension, put a compatible API key, and start interacting with the model. 
+
 ## What it does
 
 PatchWork is an agent-native gardening app. Both you and an AI agent (ChatGPT's in-app browser, or Chrome with the WebMCP flag) work on the **same live canvas and calendar**:

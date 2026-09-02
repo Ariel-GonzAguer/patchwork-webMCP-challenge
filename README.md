@@ -12,7 +12,7 @@ Watch a demo video: [→ Here](https://www.youtube.com/watch?v=nlM9p7lj1Io)
 
 There are two ways to use PatchWork:
 
-1. **ChatGPT desktop app** (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically; check "Available site tools" in the address bar. Try: *"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."*
+1. **ChatGPT desktop app** (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically. Try: *"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."*
 2. **Chrome 149+**: enable `chrome://flags/#enable-webmcp-testing`, install the oficial [WebMCP extension](https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd), go to the PatchWork URL, open the extension, put a compatible API key, and start interacting with the model. 
 
 ## What it does

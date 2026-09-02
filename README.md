@@ -17,7 +17,7 @@ There are two ways to use PatchWork:
 
 ## What it does
 
-PatchWork is an agent-native gardening app. Both you and an AI agent (ChatGPT's in-app browser, or Chrome with the WebMCP flag) work on the **same live canvas and calendar**:
+PatchWork is an agent-native gardening app. Both you and an AI agent (ChatGPT's in-app browser, or Chrome with the WebMCP flag) work on the **same live canvas and calendar**, has four sections/pages:
 
 - **Garden** — two 4×6 beds. Click to plant, click again to remove. The rules engine validates companion planting, spacing, sun needs and seasons, and shows warnings as you plant.
 - **Calendar** — care tasks (water, harvest, prune…) generated from what you plant, with checkboxes.
@@ -35,7 +35,7 @@ PatchWork is an agent-native gardening app. Both you and an AI agent (ChatGPT's 
 | `log_task` | write | Add care tasks to the shared calendar |
 | `diagnose_issue` | read | Symptoms + crop → likely problems with actions |
 
-Every agent action mutates the same Zustand store the UI renders from — so you see it happen — and is recorded in the visible **activity log** with actor, tool and warning count.
+Every agent action mutates the same Zustand store the UI renders from — so you see it happen — and is recorded in the visible **Activity log** with actor, tool and warning count.
 
 ## Why WebMCP?
 
@@ -62,11 +62,6 @@ npm run dev
 npm test        # 89 tests: engine, store, UI (a11y), WebMCP tools
 npm run build   # typecheck + production build
 ```
-
-## Try it with an agent
-
-1. **ChatGPT desktop app** (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically; check "Available site tools" in the address bar. Try: *"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."*
-2. **Chrome 149+**: enable `chrome://flags/#enable-webmcp-testing`, open the app, then in DevTools: `await document.modelContext.getTools()`.
 
 ## Structure
 

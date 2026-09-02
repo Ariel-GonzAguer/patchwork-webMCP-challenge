@@ -84,10 +84,26 @@ export default function Aprender() {
         <p>There are two ways to use PatchWork:</p>
         <ol>
           <li>
-            <strong>ChatGPT desktop app</strong> (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically. Try: <em>"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."</em>
+            <strong>ChatGPT desktop app</strong> (GPT-5.6 Sol/Terra): open the
+            live URL in the in-app browser. The tools register automatically.
+            Try:{' '}
+            <em>
+              "Plant tomatoes, basil and carrots in bed 1, spaced out nicely."
+            </em>
           </li>
           <li>
-            <strong>Chrome 149+</strong>: enable <code>chrome://flags/#enable-webmcp-testing</code>, install the oficial <a href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd" target="_blank" rel="noreferrer">WebMCP extension</a>, go to the PatchWork URL, open the extension, put a compatible API key, and start interacting with the model.
+            <strong>Chrome 149+</strong>: enable{' '}
+            <code>chrome://flags/#enable-webmcp-testing</code>, install the
+            oficial{' '}
+            <a
+              href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WebMCP extension
+            </a>
+            , go to the PatchWork URL, open the extension, put a compatible API
+            key, and start interacting with the model.
           </li>
         </ol>
       </div>

@@ -7,7 +7,10 @@ const CLAVE_ALMACEN = 'patchwork-jardin-v1';
 
 const VERSION_ACTUAL = 1;
 
-export function migrarEstado(estadoPersistido: unknown, version: number): EstadoJardin {
+export function migrarEstado(
+  estadoPersistido: unknown,
+  version: number,
+): EstadoJardin {
   let estado = estadoPersistido as Partial<EstadoJardin>;
 
   if (version < 1) {

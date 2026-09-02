@@ -5,6 +5,28 @@ import { NUMERO_CAMAS } from '../tipos/jardin';
 
 const CLAVE_ALMACEN = 'patchwork-jardin-v1';
 
+const VERSION_ACTUAL = 1;
+
+export function migrarEstado(estadoPersistido: unknown, version: number): EstadoJardin {
+  let estado = estadoPersistido as Partial<EstadoJardin>;
+
+  if (version < 1) {
+    estado = {
+      ...estadoInicial(),
+      ...estado,
+      beds: estado.beds ?? estadoInicial().beds,
+      tasks: estado.tasks ?? estadoInicial().tasks,
+      log: estado.log ?? estadoInicial().log,
+    };
+  }
+
+  // Agregar futuras migraciones acá:
+  // if (version < 2) { ... }
+  // o modificar la implementación para capturar cambios de versión mayores en un solo bloque.
+
+  return estado as EstadoJardin;
+}
+
 function estadoInicial(): EstadoJardin {
   return {
     gardenName: 'My PatchWork Garden',
@@ -106,6 +128,8 @@ export const useJardinStore = create<EstadoJardin & AccionesJardin>()(
     }),
     {
       name: CLAVE_ALMACEN,
+      version: VERSION_ACTUAL,
+      migrate: migrarEstado,
     },
   ),
 );

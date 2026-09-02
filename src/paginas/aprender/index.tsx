@@ -56,7 +56,7 @@ export default function Aprender() {
   return (
     <Marco>
       <h1>Learn — what the agent sees</h1>
-      <p className="intro-aprender">
+      <p>
         PatchWork registers <strong>6 structured tools</strong> with the browser
         via the{' '}
         <a
@@ -78,6 +78,20 @@ export default function Aprender() {
           : 'WebMCP not detected in this browser. Open this app in ChatGPT (in-app browser) or Chrome with the WebMCP flag to let the agent in.'}
       </p>
 
+      <div>
+        <h2>How to use</h2>
+
+        <p>There are two ways to use PatchWork:</p>
+        <ol>
+          <li>
+            <strong>ChatGPT desktop app</strong> (GPT-5.6 Sol/Terra): open the live URL in the in-app browser. The tools register automatically. Try: <em>"Plant tomatoes, basil and carrots in bed 1, spaced out nicely."</em>
+          </li>
+          <li>
+            <strong>Chrome 149+</strong>: enable <code>chrome://flags/#enable-webmcp-testing</code>, install the oficial <a href="https://chromewebstore.google.com/detail/webmcp-model-context-tool/gbpdfapgefenggkahomfgkhfehlcenpd" target="_blank" rel="noreferrer">WebMCP extension</a>, go to the PatchWork URL, open the extension, put a compatible API key, and start interacting with the model.
+          </li>
+        </ol>
+      </div>
+
       <h2>The 6 tools</h2>
       <div className="rejilla-tools">
         {TOOLS.map((tool) => (
@@ -97,7 +111,7 @@ export default function Aprender() {
       </div>
 
       <h2>Why this matters</h2>
-      <ul className="lista-porque">
+      <ul>
         <li>
           <strong>Same state, two actors.</strong> You click a cell, the agent
           calls <code>design_bed</code> — both land in the same shared store,

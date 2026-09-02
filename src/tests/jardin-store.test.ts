@@ -1,9 +1,69 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { useJardinStore } from '../store/jardin';
+import { useJardinStore, migrarEstado } from '../store/jardin';
+import type { EstadoJardin } from '../tipos/jardin';
 
 describe('store del jardín', () => {
   beforeEach(() => {
     useJardinStore.getState().reiniciarJardin();
+    localStorage.clear();
+  });
+
+  describe('migración de estado', () => {
+    it('migra estado de versión 0 preservando datos existentes', () => {
+      const estadoAntiguo = {
+        gardenName: 'Jardín antiguo',
+        sunHours: 6,
+        startDate: 1000000,
+        beds: [[{ crop_id: 'tomato', x: 0, y: 0 }], []],
+        tasks: [],
+        log: [],
+      };
+
+      const migrado = migrarEstado(estadoAntiguo, 0);
+
+      expect(migrado.gardenName).toBe('Jardín antiguo');
+      expect(migrado.sunHours).toBe(6);
+      expect(migrado.beds[0]).toEqual([{ crop_id: 'tomato', x: 0, y: 0 }]);
+      expect(migrado.beds[1]).toEqual([]);
+    });
+
+    it('migra estado de versión 0 con campos faltantes usando defaults', () => {
+      const estadoIncompleto = {
+        gardenName: 'Jardín parcial',
+      };
+
+      const migrado = migrarEstado(estadoIncompleto, 0);
+
+      expect(migrado.gardenName).toBe('Jardín parcial');
+      expect(migrado.beds).toHaveLength(2);
+      expect(migrado.tasks).toEqual([]);
+      expect(migrado.log).toEqual([]);
+    });
+
+    it('no modifica estado que ya está en versión actual', () => {
+      const estadoV1: EstadoJardin = {
+        gardenName: 'Jardín v1',
+        sunHours: 10,
+        startDate: 2000000,
+        beds: [[], [{ crop_id: 'basil', x: 1, y: 1 }]],
+        tasks: [],
+        log: [],
+      };
+
+      const migrado = migrarEstado(estadoV1, 1);
+
+      expect(migrado).toEqual(estadoV1);
+    });
+
+    it('migra estado sin beds/tasks/log definiéndolos como vacíos', () => {
+      const estadoVacio = {};
+
+      const migrado = migrarEstado(estadoVacio, 0);
+
+      expect(migrado.beds).toBeDefined();
+      expect(migrado.tasks).toBeDefined();
+      expect(migrado.log).toBeDefined();
+    });
   });
 
   it('inicia con dos camas vacías', () => {
